@@ -5,7 +5,7 @@
  */
 package sequencing;
 
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
@@ -16,11 +16,13 @@ public class TwoMachSeq extends javax.swing.JFrame {
     /**
      * Creates new form TwoMachSeq
      */
-    ArrayList a1 = new ArrayList();
-    ArrayList a2 = new ArrayList();
-    public TwoMachSeq(ArrayList t1, ArrayList t2) {
-        Twojobs tj = new Twojobs();
-        tj.dispose();
+    ArrayList<Integer> a1 = new ArrayList<Integer>();
+    ArrayList<Integer> a2 = new ArrayList<Integer>();
+    ArrayList<Integer> jobs1 = new ArrayList<Integer>();
+    ArrayList<Integer> jobs2 = new ArrayList<Integer>();
+    
+    public TwoMachSeq(ArrayList<Integer> t1, ArrayList<Integer> t2) {
+        
         a1 = t1;
         a2 = t2;
         initComponents();
@@ -101,13 +103,40 @@ public class TwoMachSeq extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         System.out.println("Make sequence");
-        for(int i=0; i<a1.size(); i++){
-            System.out.println("Array1 " +a1.get(i));
+        
+        ArrayList<Integer> t1 = new ArrayList<Integer>(a1);
+        ArrayList<Integer> t2 = new ArrayList<Integer>(a2);
+        System.out.println(" Temp Array1 " +t1);
+        System.out.println(" Temp Array2 " +t2);
+        int size = t1.size();
+        for (int i=0; i<size; i++){
+            int mint1 = Collections.min(t1);
+            int index1 = t1.indexOf(mint1);
+            int mint2 = Collections.min(t2);
+            int index2 = t2.indexOf(mint2);
+        
+            if(mint1 > mint2){
+                jobs1.add(mint1);
+                t1.remove(index1);
+                t2.remove(index2);
+            }else if(mint1 < mint2){
+                jobs2.add(mint2);
+                t1.remove(index1);
+                t2.remove(index2);
+            }else{
+                jobs1.add(mint1);
+                t1.remove(index1);
+                t2.remove(index2);
+            }
+        
+            System.out.println(" Jobs Array1 " +jobs1);
+            System.out.println(" Jobs Array2 " +jobs2);
+            System.out.println(" Temp Array1 after iterration  " +i+ " "+t1);
+            System.out.println(" Temp Array2 after iterration " +i+ " "+t2);   
         }
-        for(int i=0; i<a2.size(); i++){
-            System.out.println("Array1 " +a2.get(i));
-        }
-        //System.out.println("Array 2" +tj.arraymach2);
+        Collections.reverse(jobs2);
+        System.out.println(" Jobs Array2 after reverse : " +jobs2);
+        
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -138,7 +167,7 @@ public class TwoMachSeq extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        ArrayList t1 = null,t2 = null;
+        ArrayList<Integer> t1 = null,t2 = null;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TwoMachSeq(t1,t2).setVisible(true);

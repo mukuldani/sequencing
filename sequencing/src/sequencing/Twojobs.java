@@ -24,10 +24,8 @@ public class Twojobs extends javax.swing.JFrame {
     
         JTextField[] mach1 = new JTextField[num];
         JTextField[] mach2 = new JTextField[num];
-        ArrayList arraymach1 = new ArrayList();
-        ArrayList arraymach2 = new ArrayList();
-        ArrayList am1 = new ArrayList();
-        ArrayList am2 = new ArrayList();
+        ArrayList<Integer> arraymach1 = new ArrayList<Integer>();
+        ArrayList<Integer> arraymach2 = new ArrayList<Integer>();
     public Twojobs() {
         num = 0;
         initComponents();
@@ -148,6 +146,7 @@ public class Twojobs extends javax.swing.JFrame {
         if(! arraymach1.isEmpty() && !arraymach2.isEmpty()){
             TwoMachSeq tsq = new TwoMachSeq(arraymach1, arraymach2);
             tsq.setVisible(true);
+            this.dispose();
         }else{
             //do something
         }
@@ -155,10 +154,14 @@ public class Twojobs extends javax.swing.JFrame {
     
     public void getArrays(){
         for(int i=0; i<num; i++){
-            arraymach1.add(mach1[i].getText());
+            String s = mach1[i].getText();
+            int t1 = Integer.parseInt(s);
+            arraymach1.add(t1);
         }
         for(int i=0; i<num; i++){
-            arraymach2.add(mach2[i].getText()); 
+            String s1 = mach2[i].getText();
+            int t2 = Integer.parseInt(s1);
+            arraymach2.add(t2); 
         }
     }
     
