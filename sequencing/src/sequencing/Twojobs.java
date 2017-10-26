@@ -146,7 +146,7 @@ public class Twojobs extends javax.swing.JFrame {
     
     public void goToTwoMachSeq(){
         if(! arraymach1.isEmpty() && !arraymach2.isEmpty()){
-            TwoMachSeq tsq = new TwoMachSeq();
+            TwoMachSeq tsq = new TwoMachSeq(arraymach1, arraymach2);
             tsq.setVisible(true);
         }else{
             //do something
@@ -155,15 +155,11 @@ public class Twojobs extends javax.swing.JFrame {
     
     public void getArrays(){
         for(int i=0; i<num; i++){
-                    arraymach1.add(mach1[i].getText());
-                }
-                for(int i=0; i<num; i++){
-                    arraymach2.add(mach2[i].getText()); 
-                }
-                am1.addAll(arraymach1);
-                am2.addAll(arraymach2);
-                System.out.println(am1);
-                System.out.println(arraymach2);
+            arraymach1.add(mach1[i].getText());
+        }
+        for(int i=0; i<num; i++){
+            arraymach2.add(mach2[i].getText()); 
+        }
     }
     
     public void setnojobs(){

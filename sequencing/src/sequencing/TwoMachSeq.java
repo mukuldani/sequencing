@@ -5,6 +5,8 @@
  */
 package sequencing;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Mukul Dani
@@ -14,7 +16,13 @@ public class TwoMachSeq extends javax.swing.JFrame {
     /**
      * Creates new form TwoMachSeq
      */
-    public TwoMachSeq() {
+    ArrayList a1 = new ArrayList();
+    ArrayList a2 = new ArrayList();
+    public TwoMachSeq(ArrayList t1, ArrayList t2) {
+        Twojobs tj = new Twojobs();
+        tj.dispose();
+        a1 = t1;
+        a2 = t2;
         initComponents();
     }
 
@@ -93,10 +101,11 @@ public class TwoMachSeq extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         System.out.println("Make sequence");
-        Twojobs tj = new Twojobs();
-        System.out.println(tj.am1.size());
-        for(int i=0; i<tj.am1.size(); i++){
-            System.out.println("Array1" +tj.am1.get(i));
+        for(int i=0; i<a1.size(); i++){
+            System.out.println("Array1 " +a1.get(i));
+        }
+        for(int i=0; i<a2.size(); i++){
+            System.out.println("Array1 " +a2.get(i));
         }
         //System.out.println("Array 2" +tj.arraymach2);
     }//GEN-LAST:event_formWindowOpened
@@ -129,9 +138,10 @@ public class TwoMachSeq extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        ArrayList t1 = null,t2 = null;
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TwoMachSeq().setVisible(true);
+                new TwoMachSeq(t1,t2).setVisible(true);
             }
         });
     }
